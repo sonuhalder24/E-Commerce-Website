@@ -20,7 +20,7 @@
                     <img src="./images/logo.png" width="125px">
                 </div>
                 <nav>
-                    <ul>
+                    <ul id="menuItems">
                         <li><a href="#">Home</a></li>
                         <li><a href="#">Products</a></li>
                         <li><a href="#">About</a></li>
@@ -29,11 +29,12 @@
                     </ul>
                 </nav>
                 <img src="./images/cart.png" width="30px" height="30px">
+                <img src="./images/menu.png" class="menu-icon" onclick="menutoggle()">
             </div>
             <div class="row">
                 <div class="col-2">
                     <h1>Give me some Products <br>New Style</h1>
-                    <p>Lorem ipsum dolor sit amet, consectetur adipisicing elit. Pariatur voluptatum eaque, blanditiis accusamus <br> exercitationem deleniti tenetur sed esse? </p>
+                    <p>Lorem ipsum dolor sit amet, consectetur jkjk </p>
                     <a href="" class="btn">Explore Now &#8594;</a>
                 </div>
                 <div class="col-2">
@@ -43,23 +44,23 @@
         </div>
     </div>
     <!-- -------feature category--------->
-    <div class="categories">
+    <div class="categories"> 
         <div class="small-container">
             <div class="row">
                 <div class="col-3">
-                    <img src="./images/category-1.jpg" >
+                    <img src="./images/category-1.jpg" class="responsive">
                 </div>
                 <div class="col-3">
-                    <img src="./images/category-2.jpg" >
+                    <img src="./images/category-2.jpg" class="responsive">
                 </div>
                 <div class="col-3">
-                    <img src="./images/category-3.jpg" >
+                    <img src="./images/category-3.jpg" class="responsive">
                 </div>
             </div>
         </div>
     </div>
     <!--------------featured product----------------->
-    <div class="small-container">
+    <div class="small-container"> 
         <h2 class="title">Featured Products</h2>
         <div class="row">
             <div class="col-4">
@@ -212,7 +213,7 @@
                 <p>399/-</p>
             </div>
         </div>
-    </div>
+    </div> 
     <!-- ----------------------Offer------------------- -->
     <div class="offer">
         <div class="small-container">
@@ -226,18 +227,18 @@
                     <small>
                         Lorem ipsum, dolor sit amet consectetur adipisicing elit. Omnis ex nostrum libero! Lorem ipsum dolor sit amet consectetur, adipisicing elit. Quae accusantium perferendis reprehenderit!
                     </small>
-                    <a href="" class="btn">Buy Now &#8594;</a>
+                    <a href="smart_band_buy.html" class="btn">Buy Now &#8594;</a>
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <!-- ----------------testimonial--------------- -->
     <div class="testinomial">
         <div class="small-container">
             <div class="row">
                 <div class="col-3">
                     <i class="fa fa-quote-left"></i>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id modi quos, consequatur recusandae laudantium ipsa porro odit aperiam cupiditate ipsam quo doloribus incidunt reiciendis quidem. Molestias quaerat expedita odit veniam?</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur jkjk </p>
                     <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -250,7 +251,7 @@
                 </div>
                 <div class="col-3">
                     <i class="fa fa-quote-left"></i>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id modi quos, consequatur recusandae laudantium ipsa porro odit aperiam cupiditate ipsam quo doloribus incidunt reiciendis quidem. Molestias quaerat expedita odit veniam?</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur jkjk </p>
                     <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -263,7 +264,7 @@
                 </div>
                 <div class="col-3">
                     <i class="fa fa-quote-left"></i>
-                    <p>Lorem ipsum dolor, sit amet consectetur adipisicing elit. Id modi quos, consequatur recusandae laudantium ipsa porro odit aperiam cupiditate ipsam quo doloribus incidunt reiciendis quidem. Molestias quaerat expedita odit veniam?</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur jkjk </p>
                     <div class="rating">
                         <i class="fa fa-star"></i>
                         <i class="fa fa-star"></i>
@@ -276,7 +277,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <!-- ------------------brands----------------- -->
     <div class="brands">
         <div class="small-container">
@@ -298,7 +299,7 @@
                 </div>
             </div>
         </div>
-    </div>
+    </div> 
     <!-- ------------------footer---------------- -->
     <div class="footer">
         <div class="container">
@@ -313,7 +314,7 @@
                 </div>
                 <div class="footer-col-2">
                     <img src="./images/logo-white.png" alt="">
-                    <p>Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolor beatae ipsum nihil ipsa quasi, necessitatibus impedit cupiditate optio.</p>
+                    <p>Lorem ipsum dolor sit amet, consectetur jkjk Lorem ipsum dolor sit amet consectetur adipisicing.</p>
                 </div>
                 <div class="footer-col-3">
                     <h3>Useful Links</h3>
@@ -339,5 +340,18 @@
             <p class="copyright">Copyright 2021- Dipa Store</p>
         </div>
     </div>
+    <!-- js for toggle menu -->
+    <script>
+        var menuItems=document.getElementById('menuItems');
+        menuItems.style.maxHeight='0px';
+        function menutoggle(){
+            if(menuItems.style.maxHeight=='0px'){
+                menuItems.style.maxHeight='200px'
+            }
+            else{
+                menuItems.style.maxHeight='0px'
+            }
+        }
+    </script>
 </body>
 </html>
