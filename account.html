@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Cart</title>
+    <title>Account</title>
     <link rel="stylesheet" href="./css/style.css">
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -24,82 +24,42 @@
                     <li><a href="./products.html">Products</a></li>
                     <li><a href="#">About</a></li>
                     <li><a href="#">Contact</a></li>
-                    <li><a href="./account.html">Account</a></li>
+                    <li><a href="#">Account</a></li>
                 </ul>
             </nav>
             <a href="./cart.html"><img src="./images/cart.png" width="30px" height="30px"></a>
             <img src="./images/menu.png" class="menu-icon" onclick="menutoggle()">
         </div>
     </div>
-    <!-- -------------cart item details----------- -->
-    <div class="small-container cart-page">
-        <table>
-            <tr>
-                <th>Products</th>
-                <th>Quantity</th>
-                <th>Sub Total</th>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="./images/buy-1.jpg">
-                        <div>
-                            <p>Red Printed T-Shirt</p>
-                            <small>Price : 399/-</small>
-                            <br>
-                            <a href="">Remove</a>
+    <!-- --------------account page------------- -->
+    <div class="account-page">
+        <div class="container">
+            <div class="row">
+                <div class="col-2">
+                    <img src="./images/image1.png" width="100%">
+                </div>
+                <div class="col-2">
+                    <div class="form-container">
+                        <div class="form-btn">
+                            <span onclick="login()">Login</span>
+                            <span onclick="register()">Register</span>
+                            <hr id="indicator">
                         </div>
+                        <form id="login-form">
+                            <input type="email" placeholder="Email">
+                            <input type="password" placeholder="Password">
+                            <button type="submit" class="btn">Login</button>
+                            <a href="">Forgot Password</a>
+                        </form>
+                        <form id="register-form">
+                            <input type="text" placeholder="Username">
+                            <input type="email" placeholder="Email">
+                            <input type="password" placeholder="Password">
+                            <button type="submit" class="btn">Register</button>
+                        </form>
                     </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>800/-</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="./images/buy-2.jpg">
-                        <div>
-                            <p>Red Printed T-Shirt</p>
-                            <small>Price : 399/-</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>800/-</td>
-            </tr>
-            <tr>
-                <td>
-                    <div class="cart-info">
-                        <img src="./images/buy-3.jpg">
-                        <div>
-                            <p>Red Printed T-Shirt</p>
-                            <small>Price : 399/-</small>
-                            <br>
-                            <a href="">Remove</a>
-                        </div>
-                    </div>
-                </td>
-                <td><input type="number" value="1"></td>
-                <td>800/-</td>
-            </tr>
-        </table>
-        <div class="total-price">
-            <table>
-                <tr>
-                    <td>Sub Total</td>
-                    <td>700/-</td>
-                </tr>
-                <tr>
-                    <td>Tax</td>
-                    <td>60/-</td>
-                </tr>
-                <tr>
-                    <td>Total</td>
-                    <td>760/-</td>
-                </tr>
-            </table>
+                </div>
+            </div>
         </div>
     </div>
      <!-- ------------------footer---------------- -->
@@ -143,8 +103,9 @@
         </div>
     </div>
     
-    <!-- ------js for toggle menu ------- -->
+
     <script>
+        // ------js for toggle menu -------
         var menuItems=document.getElementById('menuItems');
         menuItems.style.maxHeight='0px';
         function menutoggle(){
@@ -155,6 +116,22 @@
                 menuItems.style.maxHeight='0px'
             }
         }
+        // -----------js for toggle form----------
+        var loginForm=document.getElementById('login-form');
+        var registerForm=document.getElementById('register-form');
+        var indicator=document.getElementById('indicator');
+
+        function register(){
+            registerForm.style.transform="translateX(0px)";
+            loginForm.style.transform='translateX(0px)';
+            indicator.style.transform="translateX(100px)";
+        }
+        function login(){
+            registerForm.style.transform='translateX(300px)';
+            loginForm.style.transform='translateX(300px)';
+            indicator.style.transform="translateX(0px)";
+        }
+
     </script>
 </body>
 </html>
