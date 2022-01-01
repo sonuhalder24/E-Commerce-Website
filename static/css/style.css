@@ -426,6 +426,32 @@ th:last-child {
   width: 100px;
   display: inline-block;
 }
+#form-feedback-wrong {
+  width: 300px;
+  margin: auto;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: rgba(175, 5, 5, 0.904);
+}
+#form-feedback-wrong p {
+  color: white;
+  font-size: 12px;
+  padding: 5px;
+}
+#form-feedback-correct {
+  width: 300px;
+  margin: auto;
+  margin-bottom: 10px;
+  text-align: center;
+  border-radius: 3px;
+  background-color: rgba(26, 136, 31, 0.904);
+}
+#form-feedback-correct p {
+  color: white;
+  font-size: 12px;
+  padding: 5px;
+}
 .form-btn {
   display: inline-block;
 }
@@ -470,6 +496,7 @@ form a {
   transform: translateX(100px);
   transition: transform 1s;
 }
+
 /* -----media query for less than 600px screen size------ */
 @media only screen and (max-width: 600px) {
   .row {

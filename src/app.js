@@ -54,7 +54,7 @@ app.post("/login", async (req, res) => {
 app.post("/register", async (req, res) => {
   try {
     const userSchema = new Register({
-      username: req.body.username,
+      name: req.body.name,
       email: req.body.email,
       pass: req.body.pass,
     });

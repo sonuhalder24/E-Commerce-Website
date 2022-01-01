@@ -39,6 +39,8 @@
                     <img src="./images/image1.png" width="100%">
                 </div>
                 <div class="col-2">
+                    <div id="form-feedback-wrong"></div>
+                    <div id="form-feedback-correct"></div>
                     <div class="form-container">
                         <div class="form-btn">
                             <span onclick="login()">Login</span>
@@ -51,10 +53,10 @@
                             <button type="submit" class="btn" value="login">Login</button>
                             <a href="">Forgot Password</a>
                         </form>
-                        <form id="register-form" action="/register" method="post">
-                            <input type="text" placeholder="Username" required name="username">
+                        <form id="register-form" action="/register" method="post" onsubmit="return passChecking();">
+                            <input type="text" placeholder="Name" required name="name">
                             <input type="email" placeholder="Email" required name="email">
-                            <input type="password" placeholder="Password" required name="pass">
+                            <input type="password" id="passValue" placeholder="Password" required name="pass">
                             <button type="submit" class="btn" value="register">Register</button>
                         </form>
                     </div>
@@ -130,6 +132,42 @@
             registerForm.style.transform='translateX(300px)';
             loginForm.style.transform='translateX(300px)';
             indicator.style.transform="translateX(0px)";
+        }
+
+        //----------js for form feedback--------------
+        var formFeedbackWrong=document.getElementById('form-feedback-wrong');
+        var formFeedbackCorrect=document.getElementById('form-feedback-correct');
+        var passValue=document.getElementById('passValue');
+        function passChecking(){
+            if(specialCheck(String(passValue.value))&&numberAdded(String(passValue.value))&&
+                String(passValue.value).length>=6){
+                    formFeedbackWrong.style.visibility='hidden';
+                    formFeedbackCorrect.style.visibility = 'visible';
+                    formFeedbackCorrect.innerHTML=`<p>account is creating  ...</p>`;
+                    setTimeout(function(){
+                        formFeedbackCorrect.style.visibility = 'hidden';
+                    },4000);
+                return true;
+            }
+            formFeedbackWrong.style.visibility = 'visible';
+            formFeedbackWrong.innerHTML=`<p>password must be strong(like-you@123)</p>`;
+            setTimeout(function(){
+                formFeedbackWrong.style.visibility = 'hidden';
+            },4000);
+            return false;
+        }
+        function numberAdded(a){
+            if(a.includes('1')||a.includes('2')||a.includes('3')||a.includes('4')||a.includes('5')||
+            a.includes('6')||a.includes('7')||a.includes('8')||a.includes('9')||a.includes('0')){
+                return true;
+            }
+            return false;
+        }
+        function specialCheck(a){
+            if(a.includes('@')||a.includes('#')||a.includes('*')||a.includes('$')||a.includes('%')||a.includes('&')){
+                return true;
+            }
+            return false;
         }
 
     </script>
