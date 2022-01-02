@@ -42,12 +42,13 @@ app.post("/login", async (req, res) => {
     const isMatch = await bcrypt.compare(password, userEmail.pass);
 
     if (isMatch) {
-      res.status(201).redirect("/home");
+      // res.status(201).redirect("/home");
+      res.send(true);
     } else {
-      console.log("Something wrong");
+      res.send(false);
     }
   } catch (e) {
-    console.log("Email not registered");
+    res.send(false);
   }
 });
 // register
@@ -59,9 +60,9 @@ app.post("/register", async (req, res) => {
       pass: req.body.pass,
     });
     const registered = await userSchema.save();
-    res.status(201).redirect("/home");
+    res.send(true);
   } catch (e) {
-    res.status(400).send(e);
+    res.send(false);
   }
 });
 // ----------------listen port---------------//
