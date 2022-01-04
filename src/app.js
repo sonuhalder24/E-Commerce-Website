@@ -5,6 +5,7 @@ const app = express();
 const port = process.env.PORT || 3000;
 require("./db/connection");
 const Register = require("./models/register");
+const Product = require("./models/product");
 const bcrypt = require("bcryptjs");
 
 app.use(express.static(path.join(__dirname, "../static")));
@@ -64,6 +65,11 @@ app.post("/register", async (req, res) => {
   } catch (e) {
     res.send(false);
   }
+});
+//get-products
+app.post("/get-product", async (req, res) => {
+  const productList = await Product.find();
+  res.send(productList);
 });
 // ----------------listen port---------------//
 app.listen(port, () => {
