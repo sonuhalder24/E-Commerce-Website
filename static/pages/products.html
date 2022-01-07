@@ -173,8 +173,9 @@
         var number2=document.getElementById('number2');
         count1=1;count2=2;
         function prevClick(){
-            if(count1>=2&&count2>=3){
-                count1--;count2--;
+            if(count1>=3&&count2>=4){
+                count1=count1-2;
+                count2=count2-2;
                 number1.innerHTML=`${count1}`;
                 number2.innerHTML=`${count2}`;
                 clickPage1();
@@ -187,18 +188,13 @@
             }
         }
         function nextClick() {
-            if(count1<=2&&count2<=3){
-                count1++;count2++;
+            if(count1<=1&&count2<=2){
+                count1=count1+2;
+                count2=count2+2;
                 number1.innerHTML=`${count1}`;
                 number2.innerHTML=`${count2}`;
                 clickPage1();
                 number1.classList.add("select-page");
-            }
-            else if(count1==3&&count2==4){
-                number1.classList.remove("select-page");
-                number2.classList.add("select-page");
-                clickPage2();
-                count1++;count2++;
             }
             else{
                 topFunction();
