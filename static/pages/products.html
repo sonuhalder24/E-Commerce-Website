@@ -35,7 +35,7 @@
     <div class="small-container"> 
         <div class="row row-2">
             <h2>All Products</h2>
-            <select>
+            <select id="sorting_select">
                 <option >Default Sorting</option>
                 <option >Sort by Price</option>
                 <option >Sort by Popularity</option>
@@ -47,11 +47,10 @@
         <div class="row" id="second_row"></div>
         <div class="row" id="third_row"></div>
         <div class="page-btn">
-            <span>1</span>
-            <span>2</span>
-            <span>3</span>
-            <span>4</span>
-            <span>&#8594;</span>
+            <span id="prev" onclick="prevClick()">&#8592;</span>
+            <span id="number1" onclick="clickPage1()">1</span>
+            <span id="number2" onclick="clickPage2()">2</span>
+            <span id="next" onclick="nextClick()">&#8594;</span>
         </div>
     </div> 
     <!-- ------------------footer---------------- -->
@@ -154,6 +153,40 @@
                 }
             }
         })
+        // ------select sorting---//
+        $('#sorting_select').change(function(){
+            alert($('#sorting_select').val());
+        })
+        //--------------page change------------//
+        var number1=document.getElementById('number1');
+        var number2=document.getElementById('number2');
+        count1=1;count2=2;
+        function prevClick(){
+            if(count1>=2&&count2>=3){
+                count1--;count2--;
+                number1.innerHTML=`${count1}`;
+                number2.innerHTML=`${count2}`;
+            }
+            else{
+                alert("no previous page");
+            }
+        }
+        function nextClick() {
+            if(count1<=2&&count2<=3){
+                count1++;count2++;
+                number1.innerHTML=`${count1}`;
+                number2.innerHTML=`${count2}`;
+            }
+            else{
+                alert("no more page found");
+            }
+        }
+        function clickPage1() {
+            alert(number1.innerHTML);
+        }
+        function clickPage2() {
+            alert(number2.innerHTML);
+        }
     </script>
 </body>
 </html>
