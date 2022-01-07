@@ -47,10 +47,10 @@
         <div class="row" id="second_row"></div>
         <div class="row" id="third_row"></div>
         <div class="page-btn">
-            <span id="prev" onclick="prevClick()">&#8592;</span>
+            <span id="prev" onclick="prevClick()" class="prev-next">&#8592;</span>
             <span id="number1" onclick="clickPage1()">1</span>
             <span id="number2" onclick="clickPage2()">2</span>
-            <span id="next" onclick="nextClick()">&#8594;</span>
+            <span id="next" onclick="nextClick()" class="prev-next">&#8594;</span>
         </div>
     </div> 
     <!-- ------------------footer---------------- -->
@@ -110,14 +110,26 @@
         var divFirstRow=document.getElementById('first_row');
         var divSecondRow=document.getElementById('second_row');
         var divThirdRow=document.getElementById('third_row');
+        let arr;
         $.ajax({
             url:'/get-product',
             type:'POST',
             success:function(res){
-                i=0;
+                arr=res;
                 let n=res.length;
-                while(i<n){
-                        output=
+                document.getElementById('number1').classList.add("select-page");
+                if(n<12){
+                    productShowing(n,0,res,4,8);
+                }
+                else{
+                    productShowing(12,0,res,4,8);
+                }    
+            }
+        });
+        function productShowing(n,i,res,n0,n1){
+            let n2=n;
+            while(i<n){
+                       output=
                         `<div class="col-4">
                             <a href="/product-details"><img src=${res[i].url}></a>
                             <h4>${res[i].name}</h4>
@@ -140,23 +152,22 @@
                                 output+=`</div>
                             <p>${res[i].price}/-</p>
                         </div>`
-                        if(i<4){
+                        if(i<n0){
                             divFirstRow.innerHTML+=output;
+                            console.log(i);
                         }
-                        else if(i<8){
+                        else if(i<n1){
                             divSecondRow.innerHTML+=output;
+                            console.log(i);
                         }
-                        else if(i<12){
+                        else if(i<n2){
                             divThirdRow.innerHTML+=output;
+                            console.log(i);
                         }
                     i++;
                 }
-            }
-        })
-        // ------select sorting---//
-        $('#sorting_select').change(function(){
-            alert($('#sorting_select').val());
-        })
+        }
+       
         //--------------page change------------//
         var number1=document.getElementById('number1');
         var number2=document.getElementById('number2');
@@ -166,8 +177,12 @@
                 count1--;count2--;
                 number1.innerHTML=`${count1}`;
                 number2.innerHTML=`${count2}`;
+                clickPage1();
+                number1.classList.add("select-page");
+                number2.classList.remove("select-page");
             }
             else{
+                topFunction();
                 alert("no previous page");
             }
         }
@@ -176,17 +191,59 @@
                 count1++;count2++;
                 number1.innerHTML=`${count1}`;
                 number2.innerHTML=`${count2}`;
+                clickPage1();
+                number1.classList.add("select-page");
+            }
+            else if(count1==3&&count2==4){
+                number1.classList.remove("select-page");
+                number2.classList.add("select-page");
+                clickPage2();
+                count1++;count2++;
             }
             else{
+                topFunction();
                 alert("no more page found");
             }
         }
         function clickPage1() {
-            alert(number1.innerHTML);
+            clearHTML();
+            let k=(number1.innerHTML-1)*12;
+            number1.classList.add("select-page");
+            number2.classList.remove("select-page");
+            pagesLoad(k,0);
+            topFunction();
         }
         function clickPage2() {
-            alert(number2.innerHTML);
+            clearHTML();
+            let k=(number2.innerHTML-1)*12;
+            number1.classList.remove("select-page");
+            number2.classList.add("select-page");
+            pagesLoad(k,0);
+            topFunction();  
         }
+        function clearHTML(){
+            divFirstRow.innerHTML=``;
+            divSecondRow.innerHTML=``;
+            divThirdRow.innerHTML=``;
+        }
+        function pagesLoad(k,p){
+            if(arr.length<k+12){
+                p=arr.length;
+            }
+            else{
+                p=k+12;
+            }
+            productShowing(p,k,arr,k+4,k+8);
+        }
+        function topFunction() {
+            document.body.scrollTop = 0;
+            document.documentElement.scrollTop = 0;
+        }
+
+         // ------select sorting---//
+         $('#sorting_select').change(function(){
+            alert($('#sorting_select').val());
+        })
     </script>
 </body>
 </html>

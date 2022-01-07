@@ -301,9 +301,15 @@ select:focus {
   line-height: 40px;
   cursor: pointer;
 }
-.page-btn span:hover {
+
+.select-page {
   background-color: #ff523b;
   color: #fff;
+}
+.prev-next:hover {
+  background-color: #f0a49a;
+  color: #fff;
+  border: 1px solid #f0a49a;
 }
 
 /* -------------single product details----------- */
