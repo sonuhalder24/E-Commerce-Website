@@ -504,7 +504,7 @@ form a {
 }
 
 /* -----media query for less than 600px screen size------ */
-@media only screen and (max-width: 600px) {
+@media only screen and (max-width: 767px) {
   .row {
     text-align: center;
   }
@@ -525,5 +525,10 @@ form a {
   }
   .cart-info p {
     display: none;
+  }
+}
+@media only screen and (max-width: 991px) and (min-width: 768px) {
+  .col-4 {
+    flex-basis: 50%;
   }
 }
