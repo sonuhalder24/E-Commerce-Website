@@ -38,9 +38,7 @@
             <select id="sorting_select">
                 <option >Default Sorting</option>
                 <option >Sort by Price</option>
-                <option >Sort by Popularity</option>
                 <option >Sort by Rating</option>
-                <option >Sort by Sale</option>
             </select>
         </div>
         <div class="row" id="first_row"></div>
@@ -48,8 +46,7 @@
         <div class="row" id="third_row"></div>
         <div class="page-btn">
             <span id="prev" onclick="prevClick()" class="prev-next">&#8592;</span>
-            <span id="number1" onclick="clickPage1()">1</span>
-            <span id="number2" onclick="clickPage2()">2</span>
+            <span id="number1" class="select-page" onclick="clickPage1()">1</span>
             <span id="next" onclick="nextClick()" class="prev-next">&#8594;</span>
         </div>
     </div> 
@@ -117,7 +114,6 @@
             success:function(res){
                 arr=res;
                 let n=res.length;
-                document.getElementById('number1').classList.add("select-page");
                 if(n<12){
                     productShowing(n,0,res,4,8);
                 }
@@ -154,15 +150,15 @@
                         </div>`
                         if(i<n0){
                             divFirstRow.innerHTML+=output;
-                            console.log(i);
+                            // console.log(i);
                         }
                         else if(i<n1){
                             divSecondRow.innerHTML+=output;
-                            console.log(i);
+                            // console.log(i);
                         }
                         else if(i<n2){
                             divThirdRow.innerHTML+=output;
-                            console.log(i);
+                            // console.log(i);
                         }
                     i++;
                 }
@@ -170,57 +166,41 @@
        
         //--------------page change------------//
         var number1=document.getElementById('number1');
-        var number2=document.getElementById('number2');
-        count1=1;count2=2;
+        count=1;
         function prevClick(){
-            if(count1>=3&&count2>=4){
-                count1=count1-2;
-                count2=count2-2;
-                number1.innerHTML=`${count1}`;
-                number2.innerHTML=`${count2}`;
-                clickPage1();
-                number1.classList.add("select-page");
-                number2.classList.remove("select-page");
+            if(count>1){
+                count--;
+                number1.innerHTML=`${count}`;
+                clearHTML();
+                let k=(count-1)*12;
+                pagesLoad(k,0);
             }
             else{
-                topFunction();
                 alert("no previous page");
             }
-        }
-        function nextClick() {
-            if(count1<=1&&count2<=2){
-                count1=count1+2;
-                count2=count2+2;
-                number1.innerHTML=`${count1}`;
-                number2.innerHTML=`${count2}`;
-                clickPage1();
-                number1.classList.add("select-page");
-            }
-            else{
-                topFunction();
-                alert("no more page found");
-            }
-        }
-        function clickPage1() {
-            clearHTML();
-            let k=(number1.innerHTML-1)*12;
-            number1.classList.add("select-page");
-            number2.classList.remove("select-page");
-            pagesLoad(k,0);
             topFunction();
         }
-        function clickPage2() {
-            clearHTML();
-            let k=(number2.innerHTML-1)*12;
-            number1.classList.remove("select-page");
-            number2.classList.add("select-page");
-            pagesLoad(k,0);
-            topFunction();  
+        function nextClick() {
+            if(count<4){
+                count++;
+                number1.innerHTML=`${count}`;
+                clearHTML();
+                let k=(count-1)*12;
+                pagesLoad(k,0);
+            }
+            else{
+                alert("no more page found");
+            }
+            topFunction();
         }
         function clearHTML(){
             divFirstRow.innerHTML=``;
             divSecondRow.innerHTML=``;
             divThirdRow.innerHTML=``;
+        }
+        function firstPageNumber(){
+            count=1;
+            number1.innerHTML=`${count}`;
         }
         function pagesLoad(k,p){
             if(arr.length<k+12){
@@ -236,9 +216,59 @@
             document.documentElement.scrollTop = 0;
         }
 
-         // ------select sorting---//
+         // ------select sorting------ //
          $('#sorting_select').change(function(){
-            alert($('#sorting_select').val());
+            clearHTML();
+            firstPageNumber();
+            if(($('#sorting_select').val())==='Default Sorting'){
+                $.ajax({
+                    url:'/get-product',
+                    type:'POST',
+                    success:function(res){
+                            let n=res.length;
+                            if(n<12){
+                                productShowing(n,0,res,4,8);
+                            }
+                            else{
+                                productShowing(12,0,res,4,8);
+                            }    
+                        }
+                });
+            }
+            else if(($('#sorting_select').val())==='Sort by Price'){
+                $.ajax({
+                    url:'/get-price-sorting',
+                    type:'POST',
+                    success:function(res){
+                        console.log(res);
+                            arr=res;
+                            let n=res.length;
+                            if(n<12){
+                                productShowing(n,0,res,4,8);
+                            }
+                            else{
+                                productShowing(12,0,res,4,8);
+                            }    
+                        }
+                });
+            }
+            else{
+                $.ajax({
+                    url:'/get-rating-sorting',
+                    type:'POST',
+                    success:function(res){
+                        console.log(res);
+                            arr=res;
+                            let n=res.length;
+                            if(n<12){
+                                productShowing(n,0,res,4,8);
+                            }
+                            else{
+                                productShowing(12,0,res,4,8);
+                            }    
+                        }
+                });
+            }
         })
     </script>
 </body>

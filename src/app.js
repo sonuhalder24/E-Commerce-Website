@@ -71,6 +71,24 @@ app.post("/get-product", async (req, res) => {
   const productList = await Product.find();
   res.send(productList);
 });
+//get-sorted-by-pricing-product
+app.post("/get-price-sorting", async (req, res) => {
+  try {
+    const sortedByPrice = await Product.find().sort({ price: 1 });
+    res.send(sortedByPrice);
+  } catch (e) {
+    console.log(e);
+  }
+});
+//get-sorted-by-rating-product
+app.post("/get-rating-sorting", async (req, res) => {
+  try {
+    const sortedByRating = await Product.find().sort({ rating: 1 });
+    res.send(sortedByRating);
+  } catch (e) {
+    console.log(e);
+  }
+});
 // ----------------listen port---------------//
 app.listen(port, () => {
   console.log(`server is running at port no. ${port}`);
